@@ -1,0 +1,68 @@
+﻿@using Kendo.Mvc.UI
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/kendo/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/kendo")
+</head>
+<style>
+    #menu{
+        border-width: 0px;
+    }
+</style>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="col-md-2">
+            @(Html.Kendo().Menu().Name("menu")
+                .Items(items =>
+                {
+                    items.Add().Text("选题管理").Items(children =>
+                    {
+                        children.Add().Text("选题").Action("Index", "Topics");
+                        children.Add().Text("一审").Action("Index", "Topics");
+                        children.Add().Text("二审").Action("Index", "Topics");
+                        children.Add().Text("三审").Action("Index", "Topics");
+                        children.Add().Text("四审").Action("Index", "Topics");
+                        children.Add().Text("五审").Action("Index", "Topics");
+                        children.Add().Text("六审").Action("Index", "Topics");
+                    });
+                }
+                ).Orientation(MenuOrientation.Vertical)
+                
+                )
+        </div>
+        <div class="col-md-10">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+        
+       
+    </div>
+
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

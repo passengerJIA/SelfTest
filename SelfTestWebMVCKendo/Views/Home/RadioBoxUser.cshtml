@@ -1,0 +1,12 @@
+﻿@model SelfTestWebMVCKendo.Controllers.Province
+@{
+    ViewBag.Title = "RadioBoxUser";
+}
+
+<h2>RadioBoxUser</h2>
+
+
+
+@Html.DropDownListFor(model=>model.Id, ViewBag.List as SelectList, "选择省份", new { @class="form-control"})
+
+

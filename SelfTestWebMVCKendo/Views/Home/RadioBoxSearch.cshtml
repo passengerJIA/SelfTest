@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "RadioBoxSearch";
+}
+
+<h2>RadioBoxSearch</h2>
+<div class="row">
+    <form action="testContent" method="post">
+        <div id="user" class="col-md-12">
+            <label><input name="userType" type="checkbox" value="teacher" />教师</label>
+            <label><input name="userType" type="checkbox" value="student" />学生</label>
+            <label><input name="userType" type="checkbox" value="admin" />内部用户</label>
+        </div>
+        <div id="teacherDiv1" class="teacher col-md-12">
+            <label><input name="teacherType" type="checkbox" value="auth" />认证教师</label>
+            <label><input name="teacherType" type="checkbox" value="unauth" />非认证教师</label>
+            <label><input name="teacherType" type="checkbox" value="pending" />待认证教师</label>
+        </div>
+        <div id="teacherDiv2" class="teacher col-md-12">
+            <label><input name="activeType" type="checkbox" value="inactive" />未激活教师</label>
+            <label><input name="activeType" type="checkbox" value="active" />已激活教师</label>
+        </div>
+        <div id="delete" class="col-md-12">
+            <label><input name="deleteType" type="checkbox" value="undeleted" checked="checked" />未废弃</label>
+            <label><input name="deleteType" type="checkbox" value="deleted" />已废弃</label>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(function () {
+        $(".teacher").fadeOut();
+        $("input").change(function () {
+            var data = $("form").serializeArray();
+            $.ajax({
+                url: "testcontent",
+                method: "POST",
+                data: data
+            }).done(function (data) {
+                console.log(data);
+            });
+        });
+    })
+    $("#user input[value='teacher']").change(function () {
+        if ($(this).prop("checked")) {
+            $(".teacher").fadeIn();
+        } else {
+            $(".teacher input[type='checkbox']").each(function (i, e) {
+                $(e).prop("checked", false);
+            });
+            $(".teacher").fadeOut();
+        }
+        //checkUserDiv();
+    });
+
+    $("#user input[value='student']").change(function () {
+        if ($(this).prop("checked")) {
+             $(".teacher input[type='checkbox']").each(function (i, e) {
+                $(e).prop("checked", false);
+            });
+            $(".teacher").fadeOut();
+        }
+    });
+
+     $("#user input[value='admin']").change(function () {
+        if ($(this).prop("checked")) {
+             $(".teacher input[type='checkbox']").each(function (i, e) {
+                $(e).prop("checked", false);
+            });
+            $(".teacher").fadeOut();
+        }
+     });
+
+    $("#teacherDiv1 input").change(function () {
+        if ($(this).prop("checked")) {
+            $("#user input[value='student']").prop("checked", false);
+            $("#user input[value='admin']").prop("checked", false);
+            $("#teacherDiv2 input").prop("checked", false);
+        }  
+    });
+
+    $("#teacherDiv2 input").change(function () {
+        if ($(this).prop("checked")) {
+            $("#user input[value='student']").prop("checked", false);
+            $("#user input[value='admin']").prop("checked", false);
+            $("#teacherDiv1 input").prop("checked", false);
+        }
+    } 
+    );
+
+    $("#delete input[value='undeleted']").change(function () {
+        //checkDeleteDiv();
+    });
+    $("#delete input[value='deleted']").change(function () {
+        //checkDeleteDiv();
+    });
+    function checkUserDiv() {
+        
+        var target = $("#user input").map(function () { return $(this).prop("checked") });
+        var arr = Array.from(target);
+        if (arr.every((value, index, array) => { return value == true; })) {
+            $("#user input[value='teacher']").prop("checked", false).trigger("change");
+            $("#user input[value='student']").prop("checked", false);
+            $("#user input[value='admin']").prop("checked", false);
+        }
+    }
+    function checkDeleteDiv() {
+        
+        var target = $("#delete input").map(function () { return $(this).prop("checked"); });
+        var arr = Array.from(target);
+        if (arr.every((value, index, array) => { return value == true; })) {
+            $("#delete input").prop("checked", false);
+        }
+    }
+</script>
+
+
+
+

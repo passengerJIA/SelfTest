@@ -1,0 +1,7 @@
+C:\Users\johnz\source\repos\SelfTest\SelfTest\bin\Debug\SelfTest.exe.config
+C:\Users\johnz\source\repos\SelfTest\SelfTest\bin\Debug\SelfTest.exe
+C:\Users\johnz\source\repos\SelfTest\SelfTest\bin\Debug\SelfTest.pdb
+C:\Users\johnz\source\repos\SelfTest\SelfTest\obj\Debug\SelfTest.csprojAssemblyReference.cache
+C:\Users\johnz\source\repos\SelfTest\SelfTest\obj\Debug\SelfTest.csproj.CoreCompileInputs.cache
+C:\Users\johnz\source\repos\SelfTest\SelfTest\obj\Debug\SelfTest.exe
+C:\Users\johnz\source\repos\SelfTest\SelfTest\obj\Debug\SelfTest.pdb

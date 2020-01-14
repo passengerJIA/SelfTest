@@ -1,0 +1,143 @@
+﻿@using Kendo.Mvc.UI
+@model SelfTestWebMVCKendo.Models.TestModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<button type="button" class="btn btn-danger" onclick="showDialog()">否决</button>
+
+@using (Html.BeginForm())
+{
+    @Html.Kendo().TextBoxFor(model => model.Content)
+    @Html.ValidationMessageFor(model=>model.Content)
+    <input type="submit" value="提交"/>
+}
+
+@(Html.Kendo().Dialog()
+        .Name("dialog")
+        .Title("Software Update")
+        .Content("<p>A new version of <strong>Kendo UI</strong> is available. Would you like to download and install it now?<p>")
+        .Width(400)
+        .Modal(false)
+        .Actions(actions =>
+        {
+            actions.Add().Text("Cancel");
+            actions.Add().Text("OK").Primary(true).Action("onProceed");
+        })
+
+)
+<input type="hidden" value="" />
+<button onclick="onChange()">变变变</button>
+<input id="CityID" />
+
+<script>
+    var element = 'name';
+
+    console.log(element.split(','));
+
+    function rename(da) {
+           return  $(da).map(function (i,d) {
+                d["c"] = d["Id"];
+                d["n"] = d["Name"];
+               if (d["Cities"]) {
+                   rename(d["Cities"]);
+
+                   d["d"] = d["Cities"];
+                }
+            })
+
+        }
+        var cityid = $('input[name=CityID]').val();
+        var
+            n = function (n,c) {
+                $.post("http://admin.ryedu.com.cn/province", function (data) {
+                    var x = rename(data);
+                    c(data);
+                    if (cityid) {
+                        $(data).each(function (i, v) {
+                            $(v.Cities).each(function (a, b) {
+                                if (b.Id == cityid) {
+                                    $("#province").data('bsCascader')
+                                        .setValue([{ code: v.Id, name: v.Name }, { code: b.Id, name: b.Name }]);
+                                }
+                            })
+                        });
+                    }
+                })
+            };
+        $("#province").bsCascader({
+            splitChar: " / ",
+            btnCls: 'btn-primary',
+            openOnHover: 0,
+            //lazy: !0,
+            placeHolder: '选择城市',
+            onChange: function (a, b) {
+                debugger;
+            },
+            loadData: n,
+            isSelectable: function (item) {
+                return item && item.loaded && (item.level==2);
+            }
+
+        });
+        $('#province').on('bs.cascader.select', function (e, v) {
+            $('input[name=CityID]').val(v[1].code);
+        });
+        $('#province').on('bs.cascader.change', function (e, v) {
+            console.log(this);
+        });
+
+
+
+
+    var x = 0;
+    $(function () {
+        $("input[type='hidden']").change(onProceed);
+    });
+    function onChange() {
+        debugger
+        var target = $("input[type='hidden']");
+        target.val(x++);
+        target.trigger('change');
+    }
+    function onProceed() {
+        alert("Proceeding!");
+    }
+    function showDialog() {
+        $("#dialog").data("kendoDialog").open();
+    }
+    function onClose() {
+        $("#showDialogBtn").fadeIn();
+    }
+    function onOpen() {
+        $("#showDialogBtn").fadeOut();
+    }
+</script>
