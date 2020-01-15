@@ -1,6 +1,9 @@
 name: CI
 
-on: push
+on: 
+  push:
+    branches: 
+      - master
 
 jobs:
   build:
@@ -12,12 +15,8 @@ jobs:
     - name: Install Nuget.CommandLine
       run: choco install nuget.commandline
     - name: Check Out Branch
-      run: git checkout TestBranch1
+      run: git checkout master
       shell: pwsh
-    - name: Build Project
-      run: |
-        echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\bin\MSBuild.exe <ProjectName>"
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" SelfTest.sln -p:configuration=release
     - name: Run Script
       run: .\MyTestBuild.ps1
       shell: pwsh
