@@ -17,7 +17,7 @@ jobs:
     - name: Build Project
       run: |
         echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\bin\MSBuild.exe <ProjectName>"
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" SelfTestWebMVCKendo.csproj -p:configuration=release
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" SelfTest.sln -p:configuration=release
     - name: Run Script
       run: .\MyTestBuild.ps1
       shell: pwsh
