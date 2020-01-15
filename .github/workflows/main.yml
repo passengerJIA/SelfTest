@@ -11,6 +11,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install Nuget.CommandLine
       run: choco install nuget.commandline
+    - name: Check Out Branch
+      run: git checkout TestBranch1
+      shell: pwsh
     - name: Run Script
       run: .\MyTestBuild.ps1
       shell: pwsh
