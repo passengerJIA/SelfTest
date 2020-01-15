@@ -9,6 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Check Directory
-      run: echo ${env:PATH}
+    - name: Current Folder
+      run: dir
       shell: pwsh
