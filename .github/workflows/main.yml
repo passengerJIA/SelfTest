@@ -1,6 +1,9 @@
-name: CI
+name: new CI
 
-on: push
+on: 
+  push:
+    branches:
+      - 'TestBranch1'
 
 jobs:
   build:
