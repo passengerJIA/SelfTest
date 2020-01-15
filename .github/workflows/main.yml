@@ -7,12 +7,10 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Show PATH
-      run: echo ${env:PATH}
+    - uses: actions/checkout@v1
     - name: Build
       run: .\SelfTestBuild.ps1
       shell: powershell
