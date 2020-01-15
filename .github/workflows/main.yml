@@ -9,8 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build
-      run:| 
-      echo ${env:PATH}
-      dir
+    - name: Check Directory
+      run: echo ${env:PATH}
       shell: pwsh
