@@ -10,5 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build
-      run: .\SelfTestBuild.ps1
-      shell: powershell
+      run:| 
+      echo ${env:PATH}
+      dir
+      shell: pwsh
