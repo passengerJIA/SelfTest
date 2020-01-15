@@ -9,6 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Install Nuget.CommandLine
+      run: choco install nuget.commandline
     - name: Run Script
       run: .\MyTestBuild.ps1
       shell: pwsh
