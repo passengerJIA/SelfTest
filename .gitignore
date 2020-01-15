@@ -2,7 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs
-/DotNetStandard
-/SelfTestWebMVCKendo/bin
-/SelfTestWebMVCKendo/obj
+/.vs/
+/DotNetStandard/
+/SelfTestWebMVCKendo/bin/
+/SelfTestWebMVCKendo/obj/
