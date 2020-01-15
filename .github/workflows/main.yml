@@ -9,6 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Current Folder
-      run: dir
+    - name: Run Script
+      run: .\MyTestBuild.ps1
       shell: pwsh
