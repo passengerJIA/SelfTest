@@ -1,16 +1,16 @@
 name: CI
 
-on: 
-  push:
-    branches: -master
+on: push
 
 jobs:
   build:
 
-    runs-on: windows-2019
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build
-      run: .\SelfTestBuild.ps1
-      shell: powershell
+    - name: Install Nuget.CommandLine
+      run: choco install nuget.commandline
+    - name: Run Script
+      run: .\MyTestBuild.ps1
+      shell: pwsh
