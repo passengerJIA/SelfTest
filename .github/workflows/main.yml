@@ -14,6 +14,8 @@ jobs:
     - name: Check Out Branch
       run: git checkout TestBranch1
       shell: pwsh
+    - name: Build Project
+      run: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\MSBuild.exe" SelfTestWebMVCKendo.csproj -p:Configuration=Release
     - name: Run Script
       run: .\MyTestBuild.ps1
       shell: pwsh
